@@ -6,7 +6,7 @@ canvas.height = 640;
 var g = canvas.getContext('2d');
 
 var right = { x: 1, y: 0 };
-var down = { x: 0, y: 1 };
+var down = { x: 0, y: 1};
 var left = { x: -1, y: 0 };
 
 var EMPTY = -1;
@@ -49,8 +49,8 @@ var smallStroke = 2;
 var fallingShapeRow;
 var fallingShapeCol;
 
-var keyDown = false;
-var fastDown = false;
+var keyDown = true;
+var fastDown = true;
 
 var grid = [];
 var scoreboard = new Scoreboard();
@@ -85,12 +85,13 @@ addEventListener('keydown', function (event) {
             case 's':
             case 'ArrowDown':
                 if (!fastDown) {
-                    fastDown = true;
-                    while (canMove(fallingShape, down)) {
+                   fastDown = true;
+                //    while (canMove(fallingShape, down)) {
+                    while(canMove(fallingShape, down)){
                         move(down);
-                        draw();
+                        break;
                     }
-                    shapeHasLanded();
+                    //shapeHasLanded();
                 }
         }
         draw();
@@ -353,7 +354,7 @@ function drawStartScreen() {
     fillRect(clickRect, titlebgColor);
 
     g.fillStyle = textColor;
-    g.fillText('Tetris update 0.2', titleX, titleY);
+    g.fillText('Tetris update 0.3', titleX, titleY);
 
     g.font = smallFont;
     g.fillText('click to start', clickX, clickY);
